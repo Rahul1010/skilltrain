@@ -3,6 +3,6 @@
 .settings/*
 bin/*
 .classpath
-gradle/*
 build/*
 .gradle/*
+/bin/
