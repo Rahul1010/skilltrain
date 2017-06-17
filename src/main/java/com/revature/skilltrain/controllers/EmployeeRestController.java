@@ -8,19 +8,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.skilltrain.domains.Employee;
+import com.revature.skilltrain.domains.EmployeeDetail;
 import com.revature.skilltrain.services.IEmployeeService;
 
 @RestController
-public class EmployeeController {
+public class EmployeeRestController {
 
 	@Autowired
 	IEmployeeService empService;
 
-	@GetMapping("/employess")
-	public ResponseEntity<List<Employee>> getAllEmployees() {
-		List<Employee> employees = null;
+	@GetMapping("/employees")
+	public ResponseEntity<List<EmployeeDetail>> getAllEmployees() {
+		List<EmployeeDetail> employees = null;
 		employees = empService.getAllEmployees();
-		return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+		return new ResponseEntity<List<EmployeeDetail>>(employees, HttpStatus.OK);
 	}
 }

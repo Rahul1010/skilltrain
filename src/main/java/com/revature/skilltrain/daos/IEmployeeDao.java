@@ -2,10 +2,10 @@ package com.revature.skilltrain.daos;
 
 import java.util.List;
 
-import com.revature.skilltrain.domains.Employee;
+import com.revature.skilltrain.domains.EmployeeDetail;
 
 
 public interface IEmployeeDao {
 
-	List<Employee> retrieveAllEmployees();
+	List<EmployeeDetail> retrieveAllEmployees();
 }
