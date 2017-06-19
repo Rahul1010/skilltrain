@@ -2,7 +2,6 @@ package com.revature.skilltrain.services;
 
 import java.util.List;
 
-import com.revature.skilltrain.domains.Employee;
 import com.revature.skilltrain.domains.EmployeeDetail;
 
 

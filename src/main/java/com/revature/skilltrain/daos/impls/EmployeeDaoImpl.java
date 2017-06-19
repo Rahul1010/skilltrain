@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.skilltrain.daos.IEmployeeDao;
 import com.revature.skilltrain.daos.impls.source.DataSourceConnector;
-import com.revature.skilltrain.domains.Employee;
 import com.revature.skilltrain.domains.EmployeeDetail;
 
 @Repository
