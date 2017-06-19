@@ -5,14 +5,19 @@ buildscript {
 	repositories {
 		mavenCentral()
 		jcenter()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath 'org.akhikhl.gretty:gretty:+'
+		classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
 		
 	}
 }
 
+apply plugin: "com.moowork.node"
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin : 'eclipse-wtp'
@@ -28,6 +33,7 @@ repositories {
 
 
 dependencies {
+	compile("org.springframework.boot:spring-boot-devtools")
 	compile('org.springframework.boot:spring-boot-starter-aop')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-hateoas')
@@ -41,3 +47,27 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	
 }
+
+node {
+	version = "6.9.2"
+	download = true
+	nodeModulesDir = file("ssms-app")
+}
+
+task buildClientDev(type: NpmTask, dependsOn: 'npmInstall'){
+  group = 'build'
+  description = 'Compile client side folder for development'
+  args = ['run','buildDev']
+}
+task buildClient(type:NpmTask, dependsOn:'npmInstall'){
+  group = 'build'
+  description = "Compile client side folder for production"
+  args = ['run','build']
+}
+task buildClientWatch(type: NpmTask, dependsOn: 'npmInstall'){
+  group = 'application'
+  description = "Build and watches the client side assets for rebuilding"
+  args = ['run','buildWatch']
+}
+bootRun.dependsOn(buildClientDev)
+jar.dependsOn(buildClient)
